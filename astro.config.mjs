@@ -8,6 +8,7 @@ import rehypeExternalLinks from 'rehype-external-links'
 // https://astro.build/config
 export default defineConfig({
   site: 'https://MitchelNijdam-Rockstars.github.io/mitchels-blog',
+  base: '/mitchels-blog/',
   integrations: [mdx(), svelte()],
   markdown: {
     shikiConfig: {
