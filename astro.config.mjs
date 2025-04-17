@@ -8,7 +8,7 @@ import rehypeExternalLinks from 'rehype-external-links'
 // https://astro.build/config
 export default defineConfig({
   site: 'https://MitchelNijdam-Rockstars.github.io',
-  base: 'mitchels-blog', // Needed for GitHub Pages since it's not at the root of the domain
+  base: '/mitchels-blog', // Needed for GitHub Pages since it's not at the root of the domain
   integrations: [mdx(), svelte()],
   markdown: {
     shikiConfig: {
