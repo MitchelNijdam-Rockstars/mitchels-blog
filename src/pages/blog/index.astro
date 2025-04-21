@@ -2,8 +2,8 @@
 import { getCollection } from 'astro:content'
 import BaseLayout from '../../layouts/BaseLayout.astro';
 
-const title = 'Blog posts - Mitchels Blog';
-const description = 'Latest articles.';
+const title = 'Blog posts - Mitchel\'s Blog';
+const description = 'Latest articles and posts from Mitchel Nijdam';
 const permalink = `${Astro.site.href}mitchels-blog/blog`;
 
 let allPosts = await getCollection('posts')

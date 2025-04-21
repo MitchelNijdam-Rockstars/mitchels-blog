@@ -17,7 +17,7 @@ const { title, slug, description, publishDate } = post.data;
 const readingTimeEstimate = readingTime(post.body).text
 const permalink = `${Astro.site.href}mitchels-blog/blog/${slug}`;
 const { Content } = await render(post)
-const fullTitle = `${title} - Mitchels Blog`
+const fullTitle = `${title} - Mitchel's Blog`
 ---
 
 <BaseLayout title={fullTitle} description={description} permalink={permalink} current="blog">
