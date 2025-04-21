@@ -1,9 +1,9 @@
 ---
-title: The start👋
-slug: the-start
-publishDate: 17 April 2025
+title: Test 2
+slug: test2
+publishDate: 19 April 2025
 description: Follow my journey as developer, philosopher and human being.
-tags: [personal, blog]
+tags: [development, tutorial, hoi, yes, ok]
 ---
 
 Every end must have a beginning, so if you are reading this, welcome to my blog journey.
