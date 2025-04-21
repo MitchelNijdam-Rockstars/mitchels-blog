@@ -16,18 +16,19 @@ allPosts = allPosts.sort((a, b) => new Date(b.data.publishDate).valueOf() - new 
     {allPosts.map((post, index) => {
       const href = `/blog/${post.data.slug}`;
       return (
-        <div>
-          { index !== 0 && <hr /> }
-          <div class="post-item">
-            <h2>
-              <a href={href}>{post.data.title}</a>
-            </h2>
-            <p>{post.data.description}</p>
-            <div class="post-item-footer">
-              <span class="post-item-date">— {post.data.publishDate}</span>
+          <div>
+            {index !== 0 &&
+                <hr/>}
+            <div class="post-item">
+              <h2>
+                <a href={href}>{post.data.title}</a>
+              </h2>
+              <p>{post.data.description}</p>
+              <div class="post-item-footer">
+                <span class="post-item-date">— {post.data.publishDate}</span>
+              </div>
             </div>
           </div>
-        </div>
       )
     })}
   </div>

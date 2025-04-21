@@ -5,18 +5,18 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Bio from '../../components/Bio.astro';
 
 export async function getStaticPaths() {
-	const posts = await getCollection('posts')
+  const posts = await getCollection('posts')
   return posts.map(p => ({
-    params: { slug: p.data.slug },
-    props: { post: p },
+    params: {slug: p.data.slug},
+    props: {post: p},
   }));
 }
 
-const { post } = Astro.props
-const { title, slug, description, publishDate } = post.data;
+const {post} = Astro.props
+const {title, slug, description, publishDate} = post.data;
 const readingTimeEstimate = readingTime(post.body).text
-const permalink = `${Astro.site.href}mitchels-blog/blog/${slug}`;
-const { Content } = await render(post)
+const permalink = `${Astro.site.href}/blog/${slug}`;
+const {Content} = await render(post)
 const fullTitle = `${title} - Mitchel's Blog`
 ---
 
@@ -24,14 +24,21 @@ const fullTitle = `${title} - Mitchel's Blog`
   <header>
     <p>{publishDate} ~ {readingTimeEstimate}</p>
     <h1>{title}</h1>
-    <hr />
+    <hr/>
   </header>
   <div class="container">
     <article class="content">
-      <Content />
+      <Content/>
     </article>
-    <hr />
-    <Bio />
+
+    <div class="share-buttons">
+      <a href={`https://www.linkedin.com/shareArticle?url=${encodeURIComponent(permalink)}`} target="_blank" rel="noopener noreferrer">Share on LinkedIn</a>
+      <a href={`https://x.com/intent/post?url=${encodeURIComponent(permalink)}&text=${encodeURIComponent('This post from @MitchelNijdam is awesome: ' + title)}`} target="_blank" rel="noopener noreferrer">Share on X</a>
+      <a href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(permalink)}`} target="_blank" rel="noopener noreferrer">Share on Facebook</a>
+    </div>
+
+    <hr/>
+    <Bio/>
   </div>
 </BaseLayout>
 
@@ -54,5 +61,21 @@ const fullTitle = `${title} - Mitchel's Blog`
   header hr {
     min-width: 100px;
     width: 30%;
+  }
+
+  .share-buttons {
+    margin: 1em 0;
+    text-align: center;
+  }
+
+  .share-buttons a {
+    margin: 0 0.5em;
+    text-decoration: none;
+    color: var(--text-secondary);
+    font-weight: bold;
+  }
+
+  .share-buttons a:hover {
+    text-decoration: underline;
   }
 </style>
