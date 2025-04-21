@@ -7,51 +7,52 @@ const permalink = `${Astro.site.href}mitchels-blog/about`;
 ---
 
 <BaseLayout title={title} description={description} permalink={permalink} current="about">
-    <div class="container">
-        <h1>About</h1>
-        <figure class="about-image">
-            <img src="/assets/logo.webp" alt="Illustration of a notebook" width="330">
-            <figcaption>
-                AI interpretation of the Nydam crest.
-            </figcaption>
-        </figure>
+  <div class="container">
+    <h1>About</h1>
+    <figure class="about-image">
+      <img src="/assets/logo.webp" alt="Illustration of a notebook" width="330">
+      <figcaption>
+        AI interpretation of the Nydam crest.
+      </figcaption>
+    </figure>
 
-        <p>Hey, welcome to my personal blog! My name is Mitchel Nijdam, and this will be the space where I will share my
-            thoughts, knowledge, and opinions. Everything you find here is on a personal note, and I am not speaking for
-            any company or brand.</p>
+    <p>Hey, welcome to my personal blog! My name is Mitchel Nijdam, and this is the space where I share my
+      thoughts, knowledge, experiences and opinions. Every opinion you'll read here is my own, and I am not speaking on
+      behalf of any company or brand, although I am currently employed at
+      <a href="https://www.teamrockstars.nl/" target="_blank">Team Rockstars IT.</a></p>
 
-        <p>For over 7 years now I am practicing the art of coding. I've always been keen on sharing knowledge with other
-            people, and have even been opinionated at times. Topics such as Apache Kafka, Kotlin, Spring Boot,
-            Kubernetes and AI are things I love to talk about. I have been a speaker at several meetups and conferences,
-            and I have been a mentor for different people.</p>
+    <p>For over 7 years now I am practicing the art of coding. I've always been keen on sharing knowledge with other
+      people, and have even been opinionated at times. Topics such as Apache Kafka, Kotlin, Spring Boot,
+      Kubernetes and AI are what I love to talk about. I have been a speaker at several meetups and conferences,
+      where the stress beforehand is always worth the dopamine boost after.</p>
 
-        <p>In the age of AI that we find ourselves in, I feel that it is my duty to influence the direction of this
-            powerful technology is going in, so that it will benefit all of humanity and not just the already powerful.
-            I will write blogs about both the optimistic side (what is technically possible) and the pessimistic side
-            (what impact will it have).</p>
+    <p>In the age of AI that we find ourselves in, I feel that it is my duty to influence the direction of this
+      powerful technology. It should benefit all of humanity, and not just the already powerful.
+      I will write blogs about both the optimistic side (what is technically possible) and the pessimistic side
+      (what impact will it have).</p>
 
-        <p>Do you enjoy my work? Please let me know on
-            <a href="https://www.linkedin.com/in/mitchel-nijdam/" target="_blank">LinkedIn</a>.</p>
+    <p>Do you enjoy my blog? Please let me know on
+      <a href="https://www.linkedin.com/in/mitchel-nijdam/" target="_blank">LinkedIn</a>.</p>
 
-    </div>
+  </div>
 </BaseLayout>
 
 <style>
+  .about-image {
+    float: right;
+    margin: -3em -7em 2em 2em;
+    max-width: 300px;
+  }
+
+  .about-image img {
+    border-radius: 8px;
+    margin-bottom: 1.5em;
+  }
+
+  @media (max-width: 1020px) {
     .about-image {
-        float: right;
-        margin: -3em -7em 2em 2em;
-        max-width: 300px;
+      float: none;
+      margin: 0 auto 2em;
     }
-
-    .about-image img {
-        border-radius: 8px;
-        margin-bottom: 1.5em;
-    }
-
-    @media (max-width: 1020px) {
-        .about-image {
-            float: none;
-            margin: 0 auto 2em;
-        }
-    }
+  }
 </style>
