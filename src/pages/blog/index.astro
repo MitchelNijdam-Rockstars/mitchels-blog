@@ -8,18 +8,51 @@ const permalink = `${Astro.site.href}mitchels-blog/blog`;
 
 let allPosts = await getCollection('posts')
 allPosts = allPosts.sort((a, b) => new Date(b.data.publishDate).valueOf() - new Date(a.data.publishDate).valueOf());
+
+let tagsByCount = allPosts.reduce((acc, post) => {
+  const tags = post.data.tags || [];
+  tags.forEach(tag => {
+    if (!acc[tag]) {
+      acc[tag] = 0;
+    }
+    acc[tag]++;
+  });
+  return acc;
+}, {});
+
+let sortedTags = Object.entries(tagsByCount)
+.sort((a, b) => (b[1] as number) - (a[1] as number))
+.map(([tag]) => tag);
+
+let topFiveTags = sortedTags.slice(0, 5);
+let otherTags = sortedTags.slice(5);
 ---
+
 
 <BaseLayout title={title} description={description} permalink={permalink} current="blog">
   <div class="container">
     <h1>Blog</h1>
+
+    <div class="tag-filter">
+      {topFiveTags.map(tag => (
+          <button class="tag-button" data-tag={tag}>{tag}</button>
+      ))}
+      {otherTags.map(tag => (
+          <button class="tag-button tag-button-extra hide" data-tag={tag}>{tag}</button>
+      ))}
+      {sortedTags.length > 5 && (
+          <button class="tag-button" id="toggle-tags">...</button>
+      )}
+
+    </div>
+
     {allPosts.map((post, index) => {
       const href = `/blog/${post.data.slug}`;
       return (
           <div>
             {index !== 0 &&
                 <hr/>}
-            <div class="post-item">
+            <div class="post-item" data-tags={post.data.tags.join()}>
               <h2>
                 <a href={href}>{post.data.title}</a>
               </h2>
@@ -51,4 +84,47 @@ allPosts = allPosts.sort((a, b) => new Date(b.data.publishDate).valueOf() - new 
   hr {
     margin: 60px auto;
   }
+
+  .tag-button.hide {
+    display: none;
+  }
+
+  .tag-button {
+    background: var(--background-body);
+    color: var(--text-main);
+    border: 2px solid var(--text-secondary);
+    border-radius: 4px;
+    padding: 0.5em 1em;
+    margin: 0 0.5em 0.5em 0;
+    font-size: 0.9em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  .tag-button:hover {
+    background: var(--text-secondary);
+    color: var(--background-body);
+  }
+
+  .tag-button.selected {
+    background: var(--text-secondary);
+    color: var(--background-body);
+  }
 </style>
+
+
+<script>
+  let showAllTags = false;
+
+  document.getElementById('toggle-tags').addEventListener('click', () => {
+    showAllTags = !showAllTags;
+    const buttons = document.querySelectorAll('.tag-button-extra');
+    buttons.forEach(button => {
+      button.classList.toggle('hide');
+    });
+    document.getElementById('toggle-tags').innerText = showAllTags ? 'Show less' : '...';
+  });
+
+  // TODO: function to filter post by tags, allow multiple tags to be selected
+
+</script>

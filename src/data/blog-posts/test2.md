@@ -3,7 +3,7 @@ title: Test 2
 slug: test2
 publishDate: 19 April 2025
 description: Follow my journey as developer, philosopher and human being.
-tags: [development, tutorial, hoi, yes, ok]
+tags: [development, tutorial, hoi, yes, ok, another, I, love, tags]
 ---
 
 Every end must have a beginning, so if you are reading this, welcome to my blog journey.
