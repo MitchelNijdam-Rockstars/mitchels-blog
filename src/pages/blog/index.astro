@@ -28,12 +28,11 @@ let topFiveTags = sortedTags.slice(0, 5);
 let otherTags = sortedTags.slice(5);
 ---
 
-
 <BaseLayout title={title} description={description} permalink={permalink} current="blog">
   <div class="container">
     <h1>Blog</h1>
 
-    <div class="tag-filter">
+    <div class="tag-filter" data-tag-amount={sortedTags.length}>
       {topFiveTags.map(tag => (
           <button class="tag-button" data-tag={tag}>{tag}</button>
       ))}
@@ -43,7 +42,6 @@ let otherTags = sortedTags.slice(5);
       {sortedTags.length > 5 && (
           <button class="tag-button" id="toggle-tags">...</button>
       )}
-
     </div>
 
     {allPosts.map((post, index) => {
@@ -112,19 +110,47 @@ let otherTags = sortedTags.slice(5);
   }
 </style>
 
-
 <script>
   let showAllTags = false;
 
-  document.getElementById('toggle-tags').addEventListener('click', () => {
-    showAllTags = !showAllTags;
-    const buttons = document.querySelectorAll('.tag-button-extra');
-    buttons.forEach(button => {
-      button.classList.toggle('hide');
+  let amountOfTags = document.querySelector('.tag-filter').dataset.tagAmount;
+
+  if (amountOfTags > 5) {
+    document.getElementById('toggle-tags').addEventListener('click', () => {
+      showAllTags = !showAllTags;
+      const buttons = document.querySelectorAll('.tag-button-extra');
+      buttons.forEach(button => {
+        button.classList.toggle('hide');
+      });
+      document.getElementById('toggle-tags').innerText = showAllTags ? 'Show less' : '...';
     });
-    document.getElementById('toggle-tags').innerText = showAllTags ? 'Show less' : '...';
+  }
+
+  // Tag button selection toggle and filtering
+  document.querySelectorAll('.tag-button[data-tag]').forEach(button => {
+    button.addEventListener('click', () => {
+      button.classList.toggle('selected');
+      updatePostsFilter();
+    });
   });
 
-  // TODO: function to filter post by tags, allow multiple tags to be selected
+  // Function to filter posts based on selected tags and filter logic
+  function updatePostsFilter() {
+    const selectedButtons = document.querySelectorAll('.tag-button.selected');
+    const selectedTags = Array.from(selectedButtons).map(btn => btn.dataset.tag);
+    const posts = document.querySelectorAll('.post-item');
 
+    posts.forEach(post => {
+      const postTags = post.dataset.tags.split(',');
+      let show;
+      if (selectedTags.length === 0) {
+        show = true;
+      } else {
+        // Show if any selected tag is present in postTags
+        show = selectedTags.some(tag => postTags.includes(tag));
+      }
+
+      post.parentElement.style.display = show ? '' : 'none';
+    });
+  }
 </script>
