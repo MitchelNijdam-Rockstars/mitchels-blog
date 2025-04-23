@@ -28,7 +28,6 @@ let topFiveTags = sortedTags.slice(0, 5);
 let otherTags = sortedTags.slice(5);
 ---
 
-
 <BaseLayout title={title} description={description} permalink={permalink} current="blog">
   <div class="container">
     <h1>Blog</h1>
@@ -43,7 +42,6 @@ let otherTags = sortedTags.slice(5);
       {sortedTags.length > 5 && (
           <button class="tag-button" id="toggle-tags">...</button>
       )}
-
     </div>
 
     {allPosts.map((post, index) => {
@@ -112,7 +110,6 @@ let otherTags = sortedTags.slice(5);
   }
 </style>
 
-
 <script>
   let showAllTags = false;
 
@@ -125,6 +122,31 @@ let otherTags = sortedTags.slice(5);
     document.getElementById('toggle-tags').innerText = showAllTags ? 'Show less' : '...';
   });
 
-  // TODO: function to filter post by tags, allow multiple tags to be selected
+  // Tag button selection toggle and filtering
+  document.querySelectorAll('.tag-button[data-tag]').forEach(button => {
+    button.addEventListener('click', () => {
+      button.classList.toggle('selected');
+      updatePostsFilter();
+    });
+  });
 
+  // Function to filter posts based on selected tags and filter logic
+  function updatePostsFilter() {
+    const selectedButtons = document.querySelectorAll('.tag-button.selected');
+    const selectedTags = Array.from(selectedButtons).map(btn => btn.dataset.tag);
+    const posts = document.querySelectorAll('.post-item');
+
+    posts.forEach(post => {
+      const postTags = post.dataset.tags.split(',');
+      let show;
+      if (selectedTags.length === 0) {
+        show = true;
+      } else {
+        // Show if any selected tag is present in postTags
+        show = selectedTags.some(tag => postTags.includes(tag));
+      }
+
+      post.parentElement.style.display = show ? '' : 'none';
+    });
+  }
 </script>
