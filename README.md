@@ -20,4 +20,6 @@ This project is deployed using GitHub Pages, see `.github/workflows/deploy.yml` 
 
 ## Tools
 
+- [Astro](https://astro.build/): Website builder
+- [Astro theme by Maxi Ferreira](https://github.com/Charca/astro-blog-template)
 - [Squoosh](https://squoosh.app/editor): Image compression (png to webp)
