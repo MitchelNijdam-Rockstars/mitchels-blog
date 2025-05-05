@@ -14,6 +14,12 @@ npm install
 npm run dev
 ```
 
+## Run
+
+```bash
+npm run dev
+```
+
 ## Deployment
 
 This project is deployed using GitHub Pages, see `.github/workflows/deploy.yml` for the deployment process.
