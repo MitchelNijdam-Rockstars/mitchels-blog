@@ -30,8 +30,8 @@ practices,
 design patterns. This is a mix of language-specific and general programming knowledge. Much of this knowledge is
 transferable between languages, but some is not.
 
-I see this as an enabler for understanding the flow of the code. There is no silver bullet or threshold for this, but
-the more you know, the easier it will better equipped you will be to understand the flow.
+I see this as an enabler for understanding the flow of the code. There is no threshold for this, but
+the more you know, the better equipped you will be to understand the flow.
 
 ### 2. Read the flow like a book
 
@@ -162,10 +162,10 @@ processNumbers(listOf(1, 2, 3, 4, 5))
 
 ## AI chatbots and syntactic sugar
 
-AI researchers have found (see [On the biology of a Large Language Model][1] or [this explainer][2]) that LLMs form
-complex internal relationships between words and phrases. Although the internals of these models are yet to be fully
-understood, I can't help but think that the more code looks like natural language, the better the AI will be able to
-understand it.
+AI researchers have found that LLMs form complex internal relationships between words and phrases
+(see [On the biology of a Large Language Model][1] or [this explainer][2]).
+Although the internals of these models are yet to be fully understood, I can't help but think that the more code looks
+like natural language, the better the AI will be able to understand it.
 
 With the rise of [vibe-coding](https://en.wikipedia.org/wiki/Vibe_coding) and new tools popping up like mushrooms, good
 prompt writing (by the dev) and prompt adherence (by the AI) is becoming more and more important. I can see a future
