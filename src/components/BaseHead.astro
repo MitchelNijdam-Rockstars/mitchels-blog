@@ -52,3 +52,13 @@ const socialUrl = Astro.site.href + 'assets/social.png'
     root.classList.remove('theme-dark')
   }
 </script>
+
+<!-- Google tag (gtag.js) -->
+<script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-WNGJ5Z33TB"></script>
+<script is:inline>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-WNGJ5Z33TB');
+</script>
