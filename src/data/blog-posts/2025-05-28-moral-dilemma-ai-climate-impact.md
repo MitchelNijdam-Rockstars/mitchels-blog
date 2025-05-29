@@ -63,8 +63,8 @@ consequences.
 But does this mean I should feel guilty about using them? Am I really contributing to the climate crisis by using AI
 tools? How do I decide when my usage of AI is justified, and when it is not?
 
-Although I think that we cannot answer these questions with a simple answer, and that it is a personal choice, let me
-be brave and try to answer them anyway. Also, let's not forget that there are benefits to the development of AI.
+Although I think that we cannot answer these questions with a simple yes or no, and that it is a personal choice, let me
+be brave and try to answer them anyway. Also, let's not forget that there are benefits to the development of AI too.
 
 ### Should I feel guilty?
 
