@@ -12,8 +12,8 @@ artistic images and videos for half an hour with a smile on my face.
 
 I love exploring cutting edge technology. I am still amazed by the fact that people like you and me have created such
 advanced algorithms, and that they'll only get better as we move forward. It's an achievement of humanity, and enables
-people that have creative ideas, but not the skillset to express them, to do so anyway. I also use ChatGPT daily for work
-and personal projects. It has changed the way I work.
+people that have creative ideas, but not the skillset to express them, to do so anyway. I use ChatGPT daily for
+work and personal projects, and it has changed the way I work.
 
 But right when I was about to hit the "generate" button, I stopped. This tool is packaged in such an easy-to-use
 way, that it is easy to forget what is happening behind the scenes. Let's break down what it means to generate an AI
