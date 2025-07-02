@@ -12,7 +12,7 @@ tags: [ opinion, backend, spring boot ]
 ![Camunda boat drowning](/assets/blog/2025-04-24-camunda-tradeoffs/camunda-tradeoffs.webp)
 
 [Camunda][1] is a tool that can help you manage the state of a business process. It integrates with Spring Boot as a
-java library, where it connects to the process engine, loading any [BPMN][2] files in you resources folder. It will
+java library, where it connects to the process engine, loading any [BPMN][2] files in the resources folder. It will
 handle the state of complicated, long-running workflows, offer insight into the process, and many more small features.
 It sounds great on paper, but is the developer experience really that effortless?
 
@@ -24,7 +24,7 @@ My first experience with Camunda was quite positive. Their nice dashboard, that 
 functional Camunda Modeler to build BPMN files with drag and drop, allowed us to do quick prototyping. We had a simple
 flow running within the hour.
 
-We just needed to setup a PostgresQL database where Camunda would store its state and voìla!
+We just needed to setup a PostgreSQL database where Camunda would store its state and voilà!
 
 There was some overhead as the startup time of our Spring Boot application increased significantly, but this was not
 a big issue at the time.
@@ -42,19 +42,20 @@ you want to store external data and link it to a specific instance.
 ## Retries
 
 Camunda also provides out of the box retries, even supporting incremental backoff. This is a great feature for when
-the code is connecting to external system and transient errors will disappear when a good retry strategy is chosen.
+the code connects to external systems and transient errors will disappear when a good retry strategy is chosen.
 
 For us, there was one downside to the fact that retries are handled outside the code: we didn't want to get any
 `ERROR` logs alerts before the retry is exhausted. We alert on every `ERROR` log and don't want to get notified when
 a retry might fix the issue.
 
-We were able to solve it by implementing custom error handler that looks at the retries Camunda still has left.
+We were able to solve it by implementing a custom error handler that checks how many retries Camunda has left.
 
 ## Reusable BPMN models
 
 ![Camunda sub processes](/assets/blog/2025-04-24-camunda-tradeoffs/camunda-subprocess.webp)
 
-The complexer the business process grew, the more need there was for reusable processes. For shared pieces of logic we
+The more complex the business process became, the more need there was for reusable processes. For shared pieces of logic
+we
 would create smaller BPMN processes that can be included in other processes. This reduced duplication (DRY), but had
 some negative side effects:
 
@@ -66,12 +67,12 @@ some negative side effects:
 
 In our use case, the business process was long-running, but often changing. As we are part of an Agile development team,
 we quickly want to adapt to new user requests or changing reality. So our strategy was to try to migrate all running
-process instances to the newest version of the process, always. The benefit is that there is only always one process to
+process instances to the newest version of the process, always. The benefit is that there is always just one process to
 maintain and understand, and users could use new steps immediately.
 
 We quickly found out that simple migrations were very easy to do, like renaming a task. But anything more involved than
-that was a pain in the butt. We built our own little migration framework on top of the Camunda API to allow to automate
-the migration on startup of our application.
+that was a pain in the butt. We built our own little migration framework on top of the Camunda API to allow us to
+automate the migration on startup of our application.
 
 ### Migrating parallel gates
 
@@ -98,7 +99,7 @@ Sometimes we needed to add extra data to a process instance. Not only for steeri
 requirements. One step would collect data, the other step would do something with it. This is where process variables
 come in handy.
 
-You can add full POJO's as JSON by using the `org.camunda.spin:camunda-spin-dataformat-json-jackson`, but it has
+You can add full POJOs as JSON by using the `org.camunda.spin:camunda-spin-dataformat-json-jackson`, but it has
 limitations. For example, when changing the structure of your POJO it's not so straightforward to update all existing
 process variables. It again requires custom migration code. The good thing is that you can access the json object in the
 BPMN files with expressions like `${customer.type == "NEW"}`.
@@ -117,16 +118,16 @@ REST API operations are not available in Camunda 8 anymore.
 
 ## Camunda 7 to Camunda 8
 
-So we've built quite a big application with Camunda 7 and finally most pit then the messages reaches us that there is a
-new version of
-Camunda that works fundamentally different. We would need to manage a Camunda cluster ourselves and update our code. It
-(currently) doesn't support all features we currently use and require us to rethink the way we use it.
+So we've built quite a big application with Camunda 7 and just when things stabilized, the messages reaches us that
+there is a new version of Camunda that works fundamentally different. We would need to manage a Camunda cluster
+ourselves and update our code. It (currently) doesn't support all features we currently use and requiring us to rethink
+how we use it.
 
 Some examples of features that were not available when we wanted to migrate to C8:
 
 - Not all BPMN elements we used were available
 - Process instance migration was not supported
-- The REST API as we knew it was dropped without a proper replacement
+- The REST API we relied upon was dropped without a proper replacement
 
 Some of these have been implemented in the meantime, but the migration for our team has therefore been postponed.
 
@@ -139,12 +140,15 @@ We did end up acquiring Camunda Enterprise, hoping it would smooth out some of t
 especially around monitoring, migrations, and overall process insight.
 
 It did bring some benefits. The improved Cockpit Pro interface gave us better visibility into running processes, and the
-migration tools saved us a bit of manual work. But the core developer experience didn’t really improve. Most of the
+migration tools saved us a bit of manual work. But the core developer experience didn’t improve. Most of the
 issues we were facing — like tightly coupled models and code, fragile process migrations, and limited navigation in
-complex models — remained just as challenging.
+complex models — remained just as challenging. The support sessions were limited as we had to work around Camunda's
+limitations ourselves.
 
 In hindsight, it felt like we paid for a better flashlight, but we were still stuck navigating the same cave.
 
+
+![Flashlight showing a monster in the dark](/assets/blog/2025-04-24-camunda-tradeoffs/camunda-flashlight.webp)
 ## Conclusion
 
 Camunda gave us a structured way to model and automate complex business processes. It helped us ship fast in the early
@@ -159,8 +163,8 @@ Camunda 8, with its architectural shift and missing features, didn’t inspire c
 support, we often felt like we were investing more time working around the tool than benefiting from it.
 
 If your process is stable, linear, and long-running, Camunda might be a great fit. But if you’re building a fast-moving
-backend in an agile team, don’t underestimate the hidden cost of process modeling. Sometimes a little plain old code is
-the better process engine.
+backend in an agile team, don’t underestimate the hidden cost of process modeling. Sometimes plain old code makes for
+the best process engine.
 
 [1]: https://camunda.com/
 
