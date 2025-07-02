@@ -1,15 +1,14 @@
 ---
 title: Camunda tradeoffs
 slug: camunda-tradeoffs
-publishDate: 24 April 2025
+publishDate: 2 July 2025
 description: What are the tradeoffs for using Camunda, a process engine, in backend development?
-tags: [ opinion, backend, spring boot ]
+tags: [ opinion, backend, spring-boot ]
 ---
 
 > ⚠️ Disclaimer: my experience with Camunda is mainly with version 7, but most points here still hold with Camunda 8+.
 
-
-![Camunda boat drowning](/assets/blog/2025-04-24-camunda-tradeoffs/camunda-tradeoffs.webp)
+![Camunda boat drowning](/assets/blog/2025-07-02-camunda-tradeoffs/camunda-tradeoffs.webp)
 
 [Camunda][1] is a tool that can help you manage the state of a business process. It integrates with Spring Boot as a
 java library, where it connects to the process engine, loading any [BPMN][2] files in the resources folder. It will
@@ -52,7 +51,7 @@ We were able to solve it by implementing a custom error handler that checks how 
 
 ## Reusable BPMN models
 
-![Camunda sub processes](/assets/blog/2025-04-24-camunda-tradeoffs/camunda-subprocess.webp)
+![Camunda sub processes](/assets/blog/2025-07-02-camunda-tradeoffs/camunda-subprocess.webp)
 
 The more complex the business process became, the more need there was for reusable processes. For shared pieces of logic
 we
@@ -76,7 +75,7 @@ automate the migration on startup of our application.
 
 ### Migrating parallel gates
 
-![Camunda parallel gateway miration](/assets/blog/2025-04-24-camunda-tradeoffs/camunda-parallel-gateway.webp)
+![Camunda parallel gateway miration](/assets/blog/2025-07-02-camunda-tradeoffs/camunda-parallel-gateway.webp)
 
 One example is migrating parallel gateways. Removing one branch of a gateway is tricky because once a parallel gateway
 is started with a certain amount of branches (4 in the example), the _collect gateway_ also expects 4 branches to
@@ -148,7 +147,7 @@ limitations ourselves.
 In hindsight, it felt like we paid for a better flashlight, but we were still stuck navigating the same cave.
 
 
-![Flashlight showing a monster in the dark](/assets/blog/2025-04-24-camunda-tradeoffs/camunda-flashlight.webp)
+![Flashlight showing a monster in the dark](/assets/blog/2025-07-02-camunda-tradeoffs/camunda-flashlight.webp)
 ## Conclusion
 
 Camunda gave us a structured way to model and automate complex business processes. It helped us ship fast in the early
