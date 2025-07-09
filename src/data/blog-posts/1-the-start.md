@@ -16,4 +16,4 @@ for myself, as a creative outlet, but I hope you will find some value in them as
 
 
 
-![Myself as illustrated by ChatGPT](/assets/blog/2025-04-17-the-start/me-illustrated.webp)
+![Myself as illustrated by ChatGPT](/assets/blog/1-the-start/me-illustrated.webp)

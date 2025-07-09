@@ -41,7 +41,7 @@ Its bugs.
 This is a skill that will take time to develop, but is essential for _writing good code_. Good meaning: it does what it
 is supposed to do, and is easy to read and understand.
 
-![Syntactic Sugar blog header - sugar cube sprinkling computer with sugar](/assets/blog/2025-05-05-syntactic-sugar/syntactic-sugar.webp)
+![Syntactic Sugar blog header - sugar cube sprinkling computer with sugar](/assets/blog/2-syntactic-sugar/syntactic-sugar.webp)
 
 ## Syntactic sugar
 

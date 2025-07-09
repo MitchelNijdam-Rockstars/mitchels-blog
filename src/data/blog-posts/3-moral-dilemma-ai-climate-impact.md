@@ -19,7 +19,7 @@ But right when I was about to hit the "generate" button, I stopped. This tool is
 way, that it is easy to forget what is happening behind the scenes. Let's break down what it means to generate an AI
 video, and the moral dilemma that comes with it.
 
-![OpenAI Sora - AI video generation tool](/assets/blog/2025-05-28-moral-dilemma-ai-climate-impact/sora.webp)
+![OpenAI Sora - AI video generation tool](/assets/blog/3-moral-dilemma-ai-climate-impact/sora.webp)
 Screenshot of Sora.
 
 ## Generative AI: behind the scenes
@@ -103,7 +103,7 @@ _What I would use AI for_
 - For learning about the AI tool itself
 - When I get stuck in ideation and need inspiration
 
-![AI image of a steak](/assets/blog/2025-05-28-moral-dilemma-ai-climate-impact/steak.webp)
+![AI image of a steak](/assets/blog/3-moral-dilemma-ai-climate-impact/steak.webp)
 AI generated image of a steak that probably did not have to
 exist. [source](https://sora.chatgpt.com/g/gen_01jwc6nap6e0j8p288dnrw7wm3)
 
